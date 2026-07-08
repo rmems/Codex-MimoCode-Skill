@@ -21,9 +21,10 @@ TOOLS=$(echo "$INPUT" | jq -r 'select(.type=="tool_use") | .part.tool' 2>/dev/nu
 ERRORS=$(echo "$INPUT" | grep '"type":"error"' 2>/dev/null | jq -r '.error' 2>/dev/null || true)
 
 # --- Count events ---
-TEXT_COUNT=$(echo "$TEXTS" | grep -c . 2>/dev/null || echo 0)
-TOOL_COUNT=$(echo "$TOOLS" | grep -c . 2>/dev/null || echo 0)
-ERROR_COUNT=$(echo "$ERRORS" | grep -c . 2>/dev/null || echo 0)
+TEXT_COUNT=0; TOOL_COUNT=0; ERROR_COUNT=0
+[[ -n "$TEXTS" ]]   && TEXT_COUNT=$(echo "$TEXTS" | wc -l | tr -d ' ')
+[[ -n "$TOOLS" ]]   && TOOL_COUNT=$(echo "$TOOLS" | wc -l | tr -d ' ')
+[[ -n "$ERRORS" ]]  && ERROR_COUNT=$(echo "$ERRORS" | wc -l | tr -d ' ')
 
 # --- Output summary ---
 echo "=== MiMoCode Output Summary ==="
