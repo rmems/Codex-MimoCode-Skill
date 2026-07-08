@@ -216,3 +216,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# AI coding tools
+.mimo/
+.mimocode/
+.codex/
+.cursor/
+.cursorrules
+.kilo/
+.vscode/
+.claude/
+.agents/
+.opencode/
+.windsurf/
+.aider*
